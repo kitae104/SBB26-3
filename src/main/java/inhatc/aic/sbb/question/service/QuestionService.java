@@ -5,6 +5,9 @@ import inhatc.aic.sbb.question.entity.Question;
 import inhatc.aic.sbb.question.repository.QuestionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +19,10 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
 
-    public List<Question> getQuestionList() {
-        return questionRepository.findAll();
+    public Page<Question> getQuestionList(int page) {
+        Pageable pageable = PageRequest.of(page, 10); // 페이지 번호와 페이지 크기를 설정 (예: 10개씩)
+        Page<Question> paging = questionRepository.findAll(pageable);
+        return paging;
     }
 
     public Question getQuestion(Long id) {

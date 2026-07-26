@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
-
-
-<div layout:fragment="content" class="container my-3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Detail</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-3">
     <!-- 질문 -->
     <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
     <div class="card my-3">
@@ -38,6 +45,6 @@
         <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">답변 내용을 입력하세요</p>
         <input type="submit" value="답변 등록" class="btn btn-primary my-2">
     </form>
-
 </div>
+</body>
 </html>
